@@ -58,10 +58,10 @@
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="<?php echo base_url(); ?>admin/view">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Table lists</p>
+                        <i class="pe-7s-note2"></i>
+                        <p>Table List</p>
                     </a>
                 </li>
                 <li>
@@ -71,9 +71,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url(); ?>admin/add_new_user">
+                    <a href="icons.html">
                         <i class="pe-7s-science"></i>
-                        <p>Add user</p>
+                        <p>Icons</p>
                     </a>
                 </li>
                 <li>
@@ -108,7 +108,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo base_url(); ?>admin/view">Table List</a>
+                    <a class="navbar-brand" href="#">Table List</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -185,49 +185,44 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">List of All Products</h4>
+                                <h4 class="title">Add new User</h4>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                        <th>ID</th>
                                     	<th>Firstname</th>
                                     	<th>Lastname</th>
-                                    	<th>Description</th>
-                                        <th>Company</th>
-                                    	<th>In Stock(True/false)</th>
-                                        <th>First Image</th>
-                                        <th>Second Image</th>
-                                        <th>Third Image</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
+                                        <th>Date of birth</th>
+                                        <th>Gender</th>
+                                        <th>Email</th>
+                                        <th>Country</th>
+                                        <th>Town</th>
+                                        <th>Address</th>
+                                        <th>Phone number</th>
+                                        <th>Password</th>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($products as $row ): ?>
+                                           <?php echo form_open_multipart('admin/register_new_user');?>
                                         <tr>
-                                        	<td><?php echo $row->prod_id; ?></td>
-                                        	<td><?php echo $row->product_firstname; ?></td>
-                                        	<td><?php echo $row->product_lastname; ?></td>
-                                        	<td><?php echo $row->description; ?></td>
-                                            <td><?php echo $row->company; ?></td>
-                                        	<td><?php echo $row->in_stock; ?></td>
-                                            <td><?php echo $row->image_1; ?></td>
-                                            <td><?php echo $row->image_2; ?></td>
-                                            <td><?php echo $row->image_3; ?></td>
-                                            <td><?php echo $row->price; ?></td>
-                                            <td><?php echo $row->quantity; ?></td>
-                                            <td><a href="<?php echo base_url(); ?>admin/remove_product_from_list/<?php echo $row->prod_id; ?>"> <i class="fa fa-trash" aria-hidden="true" onclick="updateTable();"></i></a></td>
+                                        	<td><input type="text" name="firstname"></td>
+                                        	<td><input type="text" name="lastname"></td>
+                                        	<td><input type="text" name="dob"></td>
+                                            <td><input type="text" name="gender"></td>
+                                            <td><input type="email" name="email"></td>
+                                            <td><input type="text" name="country"></td>
+                                            <td><input type="text" name="town"></td>
+                                            <td><input type="text" name="address"></td>
+                                            <td><input type="text" name="phonenumber"></td>
+                                            <td><input type="password" name="user_password"></td>
+                                            <td><input type="submit" value="Upload"></td>
                                         </tr>
-                                           
-                                    <?php endforeach; ?>
+                                        </form>
                                     </tbody>
                                 </table>
 
                             </div>
                         </div>
-                    </div>
-
-
+                        
                     <div class="col-md-12">
                         <div class="card card-plain">
                             <div class="header">
@@ -237,10 +232,10 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <th>ID</th>
-                                    	<th>Name</th>
-                                    	<th>Salary</th>
-                                    	<th>Country</th>
-                                    	<th>City</th>
+                                        <th>Name</th>
+                                        <th>Salary</th>
+                                        <th>Country</th>
+                                        <th>City</th>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($users as $row ): ?>
@@ -263,11 +258,8 @@
                             </div>
                         </div>
                     </div>
+                    </div>
 
-
-                </div>
-            </div>
-        </div>
 
         <footer class="footer">
             <div class="container-fluid">
@@ -307,7 +299,14 @@
 
 
 </body>
-
+     <script type="text/javascript">
+        
+        function updateTable()
+        {
+            window.location.href = "<?php echo site_url('admin/view');?>";
+        }
+     </script>
+    
     <!--   Core JS Files   -->
     <script src="<?php echo base_url(); ?>assets/assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>assets/assets/js/bootstrap.min.js" type="text/javascript"></script>

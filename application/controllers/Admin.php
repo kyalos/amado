@@ -40,24 +40,75 @@ class Admin extends CI_Controller{
  }
 
 
-   public function remove_user($user_id)
-  {  
-      //check if user is logged
-      if($this->session->userdata('loginstate')) {
+       public function remove_user($user_id)
+      {  
+          //check if user is logged
+          if($this->session->userdata('loginstate')) {
 
 
-      $this->post_model->remove_user($user_id);      
-      
+          $this->post_model->remove_user($user_id);      
+          
 
-        $data['products'] = $this->post_model->get_all_products();
-        $data['users'] = $this->post_model->get_all_users();
+            $data['products'] = $this->post_model->get_all_products();
+            $data['users'] = $this->post_model->get_all_users();
 
-        $this->load->view('pages/table',$data);
+            $this->load->view('pages/table',$data);
+       }
+    }
+
+
+
+
+   public function add_new_user()
+   {
+      $data['users'] = $this->post_model->get_all_users();
+      $this->load->view('pages/add_new_user',$data);
    }
-}
+
+
+
+   public function register_new_user()
+   {
+   $this->form_validation->set_rules('firstname', 'Firstname','required');
+   $this->form_validation->set_rules('Lastname', 'Lastname','required');
+   $this->form_validation->set_rules('email', 'Email', 'required');
+   $this->form_validation->set_rules('dob', 'Dob','required');
+   $this->form_validation->set_rules('country', 'Country','required');
+   $this->form_validation->set_rules('address', 'Address','required');
+   $this->form_validation->set_rules('gender', 'Gender','required');
+   $this->form_validation->set_rules('town', 'Town','required');
+   $this->form_validation->set_rules('user_password', 'User_password','required');
+   $this->form_validation->set_rules('phonenumber', 'Phonenumber','required');
+
+   if($this->form_validation->run() != FALSE)
+   {
+      $data = array(
+      'firstname'=>$this->input->post('firstname'),
+      'lastname' => $this->input->post('lastname'),
+      'email' => $this->input->post('email'),
+      'dob' => $this->input->post('dob'),
+      'country' => $this->input->post('country'),
+      'address' => $this->input->post('address'),
+      'gender' => $this->input->post('gender'),
+      'town' => $this->input->post('town'),
+      'user_password' => $this->input->post('user_password'),
+      'phonenumber' => $this->input->post('phonenumber')
+    );
+    $res = $this->post_model->register_user($data);
+    redirect('admin/add_new_user');
+   }
+  else
+  {
+    $this->load->view('pages/home');   
+  }
+   }
+
+
+
    public function add_new_product()
    {
-        $this->load->view('pages/add_new_product');
+        $data['products'] = $this->post_model->get_all_products();
+        $this->load->view('pages/add_new_product',$data);
    }
 
    public function create()
@@ -82,7 +133,7 @@ class Admin extends CI_Controller{
       'quantity' => $this->input->post('quantity')
     );
     $res = $this->post_model->save_product($data);
-    redirect('admin/view');
+    redirect('admin/add_new_product');
    }
   else
   {

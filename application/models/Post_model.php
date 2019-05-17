@@ -225,6 +225,12 @@ class Post_model extends CI_Model{
       return $arr_return;
     }
   }
+    
+     public function register_user($data){
+      $insert = $this->db->insert('users',$data);
+      return $insert;
+     }
+
 
   public function remove_from_cart($prod_id)
   {

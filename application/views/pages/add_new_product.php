@@ -59,21 +59,21 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="table.html">
+                    <a href="<?php echo base_url(); ?>admin/view">
                         <i class="pe-7s-note2"></i>
                         <p>Table List</p>
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="<?php echo base_url(); ?>admin/add_new_product">
                         <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
+                        <p>Add new products</p>
                     </a>
                 </li>
                 <li>
-                    <a href="icons.html">
+                    <a href="<?php echo base_url(); ?>admin/add_new_user">
                         <i class="pe-7s-science"></i>
-                        <p>Icons</p>
+                        <p>Add new user</p>
                     </a>
                 </li>
                 <li>
@@ -220,6 +220,50 @@
 
                             </div>
                         </div>
+                        <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">List of All Products</h4>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>ID</th>
+                                    	<th>Firstname</th>
+                                    	<th>Lastname</th>
+                                    	<th>Description</th>
+                                        <th>Company</th>
+                                    	<th>In Stock(True/false)</th>
+                                        <th>First Image</th>
+                                        <th>Second Image</th>
+                                        <th>Third Image</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($products as $row ): ?>
+                                        <tr>
+                                        	<td><?php echo $row->prod_id; ?></td>
+                                        	<td><?php echo $row->product_firstname; ?></td>
+                                        	<td><?php echo $row->product_lastname; ?></td>
+                                        	<td><?php echo $row->description; ?></td>
+                                            <td><?php echo $row->company; ?></td>
+                                        	<td><?php echo $row->in_stock; ?></td>
+                                            <td><?php echo $row->image_1; ?></td>
+                                            <td><?php echo $row->image_2; ?></td>
+                                            <td><?php echo $row->image_3; ?></td>
+                                            <td><?php echo $row->price; ?></td>
+                                            <td><?php echo $row->quantity; ?></td>
+                                            <td><a href="<?php echo base_url(); ?>admin/remove_product_from_list/<?php echo $row->prod_id; ?>"> <i class="fa fa-trash" aria-hidden="true" onclick="updateTable();"></i></a></td>
+                                        </tr>
+                                           
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
                     </div>
 
 
