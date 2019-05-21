@@ -462,7 +462,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="street" class=" form-control-label">Description</label>
-                                            <input type="text" id="street" placeholder="Enter Product description" class="form-control">
+                                            <input type="text" id="street" placeholder="Enter Product description" name="description" class="form-control">
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-8">
@@ -481,6 +481,11 @@
                                         <div class="form-group">
                                             <label for="country" class=" form-control-label">Price</label>
                                             <input type="text" id="country" placeholder="Enter Price" name="price" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="country" class=" form-control-label">Quantity</label>
+                                            <input type="text" id="country" placeholder="Enter Quantity" name="quantity" class="form-control">
                                         </div>
 
                                             <div class="row form-group">

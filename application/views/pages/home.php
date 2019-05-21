@@ -105,7 +105,7 @@
            <?php foreach ($products as $row): ?>
            <div class="single-products-catagory clearfix">
                     <a href="<?php echo base_url(); ?>pages/view_product/<?php echo $row->prod_id; ?>">
-                        <img src="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>" width="200px" length="200px" alt="">
+                        <img src="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>"style="width:200px;height:200px;" alt="<?php echo $row->product_firstname; ?>">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>

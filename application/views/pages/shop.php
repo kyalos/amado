@@ -128,7 +128,8 @@
                     <?php foreach ($companies as $row): ?>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="furniture" onclick="getCompanyProducts(<?php echo $row->company; ?>)">
-                        <label class="form-check-label" for="furniture" onclick="getCompanyProducts(<?php echo $row->company; ?>)"><?php echo $row->company; ?></label>
+                        <a href="<?php echo base_url(); ?>pages/get_company_products/<?php echo $row->company; ?>"><p class="form-check-label" for="furniture" onclick="getCompanyProducts(<?php echo $row->company; ?>)"><?php echo $row->company; ?></p>
+                        </a>
                     </div>
                 <?php endforeach; ?>
                     
@@ -141,16 +142,19 @@
                 <h6 class="widget-title mb-30">Color</h6>
 
                 <div class="widget-desc">
+
+                     <?php foreach ($colors as $row): ?>
+                        
+                    <style type="text/css">
+                    .widget.color .widget-desc ul li a.color1{
+                        background-color: #<?php echo $row->color; ?>;
+                    }
+                        </style>
+                      
                     <ul class="d-flex">
                         <li><a href="#" class="color1"></a></li>
-                        <li><a href="#" class="color2"></a></li>
-                        <li><a href="#" class="color3"></a></li>
-                        <li><a href="#" class="color4"></a></li>
-                        <li><a href="#" class="color5"></a></li>
-                        <li><a href="#" class="color6"></a></li>
-                        <li><a href="#" class="color7"></a></li>
-                        <li><a href="#" class="color8"></a></li>
                     </ul>
+                <?php endforeach; ?>
                 </div>
             </div>
 
@@ -222,9 +226,9 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src ="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>" alt="">
+                                <img src ="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>"style="width:200px;height:200px;" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="<?php echo base_url(); ?>uploads/<?php echo $row->image_3; ?>" alt="">
+                                <img class="hover-img" src="<?php echo base_url(); ?>uploads/<?php echo $row->image_3; ?>" style="width:200px;height:200px;" alt="">
                             </div>
 
                             <!-- Product Description -->

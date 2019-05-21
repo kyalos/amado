@@ -124,10 +124,10 @@ class Post_model extends CI_Model{
           foreach ($result as $row){
           $price = $row->price;
           $total_price+=$price;
-         }
-         
+         }         
 
-         return $total_price;
+         $receipt = array('total_price' => $total_price);
+         return $receipt;
  }
 
  public function get_all_users()
@@ -139,17 +139,27 @@ class Post_model extends CI_Model{
 
  }
      
- // public function get_product($prod_id)
- // {
- //    $x = 1;
+ public function get_product($prod_id)
+ {
+    $x = 1;
 
- //     $this->db->select('*'); 
- //          $this->db->from('product');
- //          $this->db->where( array('prod_id'=>$prod_id));
- //          $this->db->where( array('in_stock'=>$x));
- //          $query = $this->db->get();
- //          return $query->result();
- // }
+     $this->db->select('*'); 
+          $this->db->from('product');
+          $this->db->where( array('prod_id'=>$prod_id));
+          $this->db->where( array('in_stock'=>$x));
+          $query = $this->db->get();
+          return $query->result();
+ }
+
+ public function get_product_colors($prod_id)
+ {
+    $this->db->select('color'); 
+          $this->db->from('product');
+          $this->db->where( array('prod_id'=>$prod_id));
+          $query = $this->db->get();
+          return $query->result();
+ }
+
  public function get_all_products()
  {
           $this->db->select('*'); 

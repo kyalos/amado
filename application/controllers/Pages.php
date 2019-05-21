@@ -36,7 +36,10 @@ class Pages extends CI_Controller{
 
     $data['products'] = $this->post_model->get_product($prod_id);
 
+    
     $data['companies'] = $this->post_model->get_all_companies();
+
+    $data['colors'] = $this->post_model->get_product_colors($prod_id);
 
 
     $this->load->view('pages/shop',$data);
@@ -144,7 +147,7 @@ public function shop(){
       $this->post_model->add_to_cart($prod_id);      
       
 
-      $this->post_model->get_prices();
+       $this->post_model->get_prices();
 
         $data['products'] = $this->post_model->get_all_products();
 

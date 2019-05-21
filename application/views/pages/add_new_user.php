@@ -449,56 +449,67 @@
                                         <strong>Company</strong>
                                         <small> Form</small>
                                     </div>
-                                    <form action="admin/register_new_user" method="POST">
+                                    <form action="<?php echo base_url(); ?>admin/register_new_user" method="POST">
                                     <div class="card-body card-block">
                                         <div class="form-group">
                                             <label for="company" class=" form-control-label">Firstname</label>
-                                            <input type="text" id="company" placeholder="Enter your Firstname" class="form-control">
+                                            <input type="text" id="company" name="firstname" placeholder="Enter your Firstname" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Lastname</label>
-                                            <input type="text" id="vat" placeholder="Enter your Lastname" class="form-control">
+                                            <input type="text" id="vat" name="lastname" placeholder="Enter your Lastname" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="street" class=" form-control-label">Email</label>
-                                            <input type="email" id="street" placeholder="Enter your email" class="form-control">
+                                            <input type="email" id="street" name="email" placeholder="Enter your email" class="form-control">
                                         </div>
+
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select" class=" form-control-label">Select Gender</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="gender" id="select" class="form-control">
+                                                        <option value="Female">Female</option>
+                                                        <option value="Male">Male</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         <div class="row form-group">
                                             <div class="col-8">
                                                 <div class="form-group">
                                                     <label for="city" class=" form-control-label">Country</label>
-                                                    <input type="text" id="city" placeholder="Enter your country" class="form-control">
+                                                    <input type="text" id="city" placeholder="Enter your country" name="country" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-8">
                                                 <div class="form-group">
                                                     <label for="postal-code" class=" form-control-label">Address</label>
-                                                    <input type="text" id="postal-code" placeholder="Enter your Address" class="form-control">
+                                                    <input type="text" id="postal-code" placeholder="Enter your Address" name="address" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="country" class=" form-control-label">Town</label>
-                                            <input type="text" id="country" placeholder="Enter your Town" class="form-control">
+                                            <input type="text" id="country" name="town" placeholder="Enter your Town" class="form-control">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="country" class=" form-control-label">Phone Number</label>
-                                            <input type="text" id="country" placeholder="Enter your Phone number" class="form-control">
+                                            <input type="text" id="country" placeholder="Enter your Phone number" name="phonenumber" class="form-control">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="country" class=" form-control-label">Date of birth</label>
-                                            <input type="text" id="country" placeholder="dd/mm/yyyy" class="form-control">
+                                            <input type="text" id="country" name="dob" placeholder="dd/mm/yyyy" class="form-control">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="country" class=" form-control-label">Password</label>
-                                            <input type="password" id="country" placeholder="Create your password" class="form-control">
+                                            <input type="password" id="country" placeholder="Create your password" name="user_password" class="form-control">
                                         </div>
                                         <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                                    <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                                    <span id="payment-button-amount">Pay $100.00</span>
+                                                    <span id="payment-button-amount">Register</span>
                                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
                                                 </button>
                                     </div>

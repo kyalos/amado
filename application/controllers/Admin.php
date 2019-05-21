@@ -20,10 +20,25 @@ class Admin extends CI_Controller{
       // {
       //      $this->load->view('pages/login',$data);
       // }
+ 
 
+ //All lists here
+  public function products_list()
+  {
+     $data['products'] = $this->post_model->get_all_products();
+        
+     $this->load->view('pages/products_list',$data);   
+  }
 
+  public function users_list()
+  {
+     $data['users'] = $this->post_model->get_all_users();
+        
+      $this->load->view('pages/users_list',$data);
+  }
 
    public function remove_product_from_list($prod_id)
+  
   {  
       //check if user is logged
       if($this->session->userdata('loginstate')) {
@@ -70,7 +85,7 @@ class Admin extends CI_Controller{
    public function register_new_user()
    {
    $this->form_validation->set_rules('firstname', 'Firstname','required');
-   $this->form_validation->set_rules('Lastname', 'Lastname','required');
+   $this->form_validation->set_rules('lastname', 'Lastname','required');
    $this->form_validation->set_rules('email', 'Email', 'required');
    $this->form_validation->set_rules('dob', 'Dob','required');
    $this->form_validation->set_rules('country', 'Country','required');
@@ -99,7 +114,8 @@ class Admin extends CI_Controller{
    }
   else
   {
-    $this->load->view('pages/home');   
+    $data['products'] = $this->post_model->get_all_products();
+    $this->load->view('pages/home',$data);   
   }
    }
 
@@ -137,7 +153,8 @@ class Admin extends CI_Controller{
    }
   else
   {
-    $this->load->view('pages/home');   
+    $data['products'] = $this->post_model->get_all_products();
+    $this->load->view('pages/home',$data);   
   }
 }
  
