@@ -109,9 +109,9 @@
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
+                        </div>
                             <p>From $<?php echo $row->price; ?></p>
                             <h4><?php echo $row->product_firstname; ?> <?php echo $row->product_lastname; ?></h4>
-                        </div>
                     </a>
                 </div>
                 <?php endforeach; ?>                

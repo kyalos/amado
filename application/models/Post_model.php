@@ -138,6 +138,15 @@ class Post_model extends CI_Model{
           return $query->result();
 
  }
+
+ public function get_all_user_types()
+ {
+        $this->db->select('*'); 
+          $this->db->from('user_type');
+          $query = $this->db->get();
+          return $query->result();
+
+ }
      
  public function get_product($prod_id)
  {

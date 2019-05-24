@@ -226,9 +226,11 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
+                                <a href="<?php echo base_url(); ?>pages/view_product/<?php echo $row->prod_id; ?>">
                                 <img src ="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>"style="width:200px;height:200px;" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="<?php echo base_url(); ?>uploads/<?php echo $row->image_3; ?>" style="width:200px;height:200px;" alt="">
+                                <img class="hover-img" src="<?php echo base_url(); ?>uploads/<?php echo $row->image_2; ?>" style="width:200px;height:200px;" alt="">
+                            </a>
                             </div>
 
                             <!-- Product Description -->
@@ -237,8 +239,9 @@
                                 <div class="product-meta-data">
                                     <div class="line"></div>
                                     <p class="product-price">$<?php echo $row->price; ?></p>
-                                    <a href="product-details.html">
+                                    <a href="<?php echo base_url(); ?>pages/view_product/<?php echo $row->prod_id; ?>">
                                         <h6><?php echo $row->product_firstname; ?> <?php echo $row->product_lastname; ?></h6>
+                                    </a>
                                     </a>
                                 </div>
                                 <!-- Ratings & Cart -->

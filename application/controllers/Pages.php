@@ -133,8 +133,14 @@ public function shop(){
    }
    public function checkout(){
 	
+      if($this->session->userdata('loginstate')) {
        $this->load->view('pages/checkout');
        // $this->load->view('templates/footer');
+     }
+     else
+     {
+       $this->load->view('pages/login');  
+     }
 }
 
         //cart items

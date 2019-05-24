@@ -41,17 +41,21 @@ class Admin extends CI_Controller{
   
   {  
       //check if user is logged
-      if($this->session->userdata('loginstate')) {
+     // if($this->session->userdata('loginstate')) {
 
 
       $this->post_model->remove_product_from_list($prod_id);      
       
 
         $data['products'] = $this->post_model->get_all_products();
-        $data['users'] = $this->post_model->get_all_users();
 
-        $this->load->view('pages/table',$data);
-   }
+        $this->load->view('pages/products_list',$data);
+   //}
+   // else
+   // {
+
+   // }
+
  }
 
 
@@ -64,10 +68,9 @@ class Admin extends CI_Controller{
           $this->post_model->remove_user($user_id);      
           
 
-            $data['products'] = $this->post_model->get_all_products();
             $data['users'] = $this->post_model->get_all_users();
 
-            $this->load->view('pages/table',$data);
+            $this->load->view('pages/users_list',$data);
        }
     }
 
@@ -76,13 +79,14 @@ class Admin extends CI_Controller{
 
    public function add_new_user()
    {
-      $data['users'] = $this->post_model->get_all_users();
+      $data['user_types'] = $this->post_model->get_all_user_types();
+      
       $this->load->view('pages/add_new_user',$data);
    }
 
 
 
-   public function register_new_user()
+   public function register_new_user_admin()
    {
    $this->form_validation->set_rules('firstname', 'Firstname','required');
    $this->form_validation->set_rules('lastname', 'Lastname','required');
@@ -92,6 +96,7 @@ class Admin extends CI_Controller{
    $this->form_validation->set_rules('address', 'Address','required');
    $this->form_validation->set_rules('gender', 'Gender','required');
    $this->form_validation->set_rules('town', 'Town','required');
+   $this->form_validation->set_rules('user_type', 'User_type','required');
    $this->form_validation->set_rules('user_password', 'User_password','required');
    $this->form_validation->set_rules('phonenumber', 'Phonenumber','required');
 
@@ -106,6 +111,7 @@ class Admin extends CI_Controller{
       'address' => $this->input->post('address'),
       'gender' => $this->input->post('gender'),
       'town' => $this->input->post('town'),
+      'user_type' => $this->input->post('user_type'),
       'user_password' => $this->input->post('user_password'),
       'phonenumber' => $this->input->post('phonenumber')
     );

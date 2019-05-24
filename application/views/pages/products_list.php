@@ -9,6 +9,18 @@
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
 
+    <style>
+        table, th, td
+        {
+            border:2px solid black;
+        }
+
+        th,td
+        {
+            text-align: right;
+        }
+    </style>
+
     <!-- Title Page-->
     <title>Dashboard 3</title>
 
@@ -616,8 +628,9 @@
                                         <i class="zmdi zmdi-filter-list"></i>filters</button>
                                 </div>
                                 <div class="table-data__tool-right">
+                                    <a href="<?php echo base_url(); ?>admin/add_new_product">
                                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                        <i class="zmdi zmdi-plus"></i>add item</button>
+                                        <i class="zmdi zmdi-plus"></i>add new Product</button></a>
                                     <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                                         <select class="js-select2" name="type">
                                             <option selected="selected">Export</option>
@@ -632,15 +645,8 @@
                                 <table class="table table-data2">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
-                                            </th>
                                             <th>product ID</th>
-                                            <th>firsname</th>
-                                            <th>lastname</th>
+                                            <th>fullname</th>
                                             <th>Description</th>
                                             <th>Company</th>
                                             <th>Price</th>
@@ -648,45 +654,39 @@
                                             <th>In Stock</th>
                                             <th>First Image</th>
                                             <th>Second Image</th>
-                                            <th></th>
+                                            <th>options</th>
                                         </tr>
                                     </thead>
                                     <?php foreach ($products as $row ): ?>
-                                    <tbody onclick="myFunction()">
+                                    <tbody>
                                         <tr class="tr-shadow">
-                                            <td>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
-                                            </td>
+                                            
                                             <td><?php echo $row->prod_id; ?></td>
                                             <td><?php echo $row->product_firstname; ?> <?php echo $row->product_lastname; ?></td>
-                                            <td>
-                                                <span class="block-email"><?php echo $row->description; ?></span>
+                                            <td><?php echo $row->description; ?>
                                             </td>
-                                            <td class="desc"><?php echo $row->company; ?></td>
-                                            <td><?php echo $row->in_stock; ?></td>
-                                            <td>
-                                                <span class="status--process"><?php echo $row->image_1; ?></span>
-                                            </td>
+                                            <td><?php echo $row->company; ?></td>
+                                          <td><?php echo $row->price; ?></td>   
+                                          <td><?php echo $row->quantity; ?></td>
+                                            <td style="align:center"><?php echo $row->in_stock; ?></td>
+                                                 <td><?php echo $row->image_1; ?></td>
                                             <td><?php echo $row->image_2; ?></td>
-                                            <td><?php echo $row->price; ?></td>
-                                            <td><?php echo $row->quantity; ?></td>
                                             <td>
                                                 <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                                    <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send" onclick="myFunction()">
                                                         <i class="zmdi zmdi-mail-send"></i>
-                                                    </button>
+                                                    </button> -->
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </button>
+                                                    <a href="<?php echo base_url(); ?>admin/remove_product_from_list/<?php echo $row->prod_id; ?>">
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                         <i class="zmdi zmdi-delete"></i>
                                                     </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                </a>
+                                                    <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="More">
                                                         <i class="zmdi zmdi-more"></i>
-                                                    </button>
+                                                    </button> -->
                                                 </div>
                                             </td>
                                         </tr>
