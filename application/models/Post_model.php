@@ -3,6 +3,7 @@ class Post_model extends CI_Model{
      public function __constrget_get_uct(){
           $this->load->database();
           $this->load->dbforge();
+          $this->load->helper('array');
           $this->load->library('session');
      }
      public function add_to_cart($prod_id){
@@ -113,8 +114,8 @@ class Post_model extends CI_Model{
 
  public function get_prices()
  {
-        $price = 1;
-        $total_price=1;
+          $price = 1;
+          $total_price=1;
          
           $this->db->select('*'); 
           $this->db->from('receipt');
@@ -126,7 +127,7 @@ class Post_model extends CI_Model{
           $total_price+=$price;
          }         
 
-         $receipt = array('total_price' => $total_price);
+         $receipt = array('total_price' => '$total_price');
          return $receipt;
  }
 
@@ -162,7 +163,7 @@ class Post_model extends CI_Model{
 
  public function get_product_colors($prod_id)
  {
-    $this->db->select('color'); 
+          $this->db->select('color'); 
           $this->db->from('product');
           $this->db->where( array('prod_id'=>$prod_id));
           $query = $this->db->get();
