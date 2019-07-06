@@ -679,11 +679,11 @@
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </button>
-                                                    <a href="<?php echo base_url(); ?>admin/remove_product_from_list/<?php echo $row->prod_id; ?>">
+                                                    <!-- <a href="<?php echo base_url(); ?>admin/remove_product_from_list/<?php echo $row->prod_id; ?>"> -->
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                        <i class="zmdi zmdi-delete"></i>
+                                                        <i class="zmdi zmdi-delete" onclick="myFunction('<?php echo $row->prod_id; ?>')"></i>
                                                     </button>
-                                                </a>
+                                                <!-- </a> -->
                                                     <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="More">
                                                         <i class="zmdi zmdi-more"></i>
                                                     </button> -->
@@ -726,27 +726,19 @@
     </div>
 
 
-     <script>
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+<script>
+function myFunction(i) {
+  var txt;
+  var r = confirm("Please Confirm deletion");
+  if (r == true) {
+    window.location.href = "<?php echo site_url('admin/remove_product_from_list/i');?>";
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
+  } else {
+    txt = "You pressed Cancel!";
   }
 }
 </script>
+
 
     <!-- Jquery JS-->
     <script src="<?php echo base_url(); ?>assets/admin/vendor/jquery-3.2.1.min.js"></script>

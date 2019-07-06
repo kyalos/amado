@@ -47,7 +47,7 @@ public function homewinkel()
     $data['colors'] = $this->post_model->get_product_colors($prod_id);
 
 
-    $this->load->view('pages/shop',$data);
+    $this->load->view('pages/view_product',$data);
   }
 
   public function cart(){
@@ -95,7 +95,6 @@ public function shop(){
         $data['categories'] = $this->post_model->get_all_categories();  
         
         $data['companies'] = $this->post_model->get_all_companies();    
-    
        // $this->load->view('templates/header');
        $this->load->view('pages/shop',$data);
        // $this->load->view('templates/footer');

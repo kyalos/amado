@@ -3,6 +3,7 @@ class Post_model extends CI_Model{
      public function __constrget_get_uct(){
           $this->load->database();
           $this->load->dbforge();
+          $this->load->helper('array');
           $this->load->library('session');
      }
      public function add_to_cart($prod_id){
@@ -113,8 +114,8 @@ class Post_model extends CI_Model{
 
  public function get_prices()
  {
-        $price = 1;
-        $total_price=1;
+          $price = 1;
+          $total_price=1;
          
           $user_id=$this->session->userdata('user_id');
 
@@ -130,8 +131,13 @@ class Post_model extends CI_Model{
          //  $total_price+=$price;
          // }         
 
+<<<<<<< HEAD
          // $receipt = array('total_price' => $total_price);
          // return $receipt;
+=======
+         $receipt = array('total_price' => '$total_price');
+         return $receipt;
+>>>>>>> 9776274bdc6a96c99a56f413200e6ca35919304c
  }
 
  public function get_all_users()
@@ -166,7 +172,7 @@ class Post_model extends CI_Model{
 
  public function get_product_colors($prod_id)
  {
-    $this->db->select('color'); 
+          $this->db->select('color'); 
           $this->db->from('product');
           $this->db->where( array('prod_id'=>$prod_id));
           $query = $this->db->get();
