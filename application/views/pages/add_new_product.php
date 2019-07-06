@@ -450,11 +450,28 @@
                                         <strong>Company</strong>
                                         <small> Form</small>
                                     </div>
+                                    <?php if ($this->session->flashdata('success')): ?>
+                                                    <div class="alert alert-success block-inner">
+                                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                                        <?php echo $this->session->flashdata('success'); ?>
+                                                    </div>                                    
+                                                    <div class="clearfix"></div>
+                                                    <br>
+                                                <?php endif; ?>
+
+                                                <?php if ($this->session->flashdata('error')): ?>
+                                                    <div class="alert alert-danger block-inner">
+                                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                                        <?php echo $this->session->flashdata('error'); ?>
+                                                    </div>                                    
+                                                    <div class="clearfix"></div>
+                                                    <br>
+                                                <?php endif; ?> 
                                     <?php echo form_open_multipart('admin/create');?>
                                     <div class="card-body card-block">
                                         <div class="form-group">
                                             <label for="company" class=" form-control-label">Product firstname</label>
-                                            <input type="text" id="company" placeholder="Enter Product firstname" name="product_firstname" class="form-control">
+                                            <input type="text" id="company" placeholder="Enter Product firstname" name="product_firstname" class="form-control" required >
                                         </div>
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Product secondname</label>
@@ -462,30 +479,34 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="street" class=" form-control-label">Description</label>
-                                            <input type="text" id="street" placeholder="Enter Product description" name="description" class="form-control">
+                                            <input type="text" id="street" placeholder="Enter Product description" name="description" class="form-control" required>
                                         </div>
                                         <div class="row form-group">
                                             <div class="col-8">
                                                 <div class="form-group">
                                                     <label for="city" class=" form-control-label">Company</label>
-                                                    <input type="text" id="city" placeholder="Enter Company" name="company" class="form-control">
+                                                    <input type="text" id="city" placeholder="Enter Company" name="company" class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-8">
                                                 <div class="form-group">
                                                     <label for="postal-code" class=" form-control-label">In stock</label>
-                                                    <input type="text" id="postal-code" placeholder="Yes or No" name="in_stock" class="form-control">
+                                                    
+                                                    <select class="form-control" name="in_stock">
+                                                        <option value="yes">Yes</option>
+                                                         <option value="no">No</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="country" class=" form-control-label">Price</label>
-                                            <input type="text" id="country" placeholder="Enter Price" name="price" class="form-control">
+                                            <input type="text" id="country" placeholder="Enter Price" name="price" class="form-control" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="country" class=" form-control-label">Quantity</label>
-                                            <input type="text" id="country" placeholder="Enter Quantity" name="quantity" class="form-control">
+                                            <input type="text" id="country" placeholder="Enter Quantity" name="quantity" class="form-control" required>
                                         </div>
 
                                             <div class="row form-group">
@@ -493,7 +514,7 @@
                                                     <label for="file-input" class=" form-control-label">First image</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="file" id="file-input" name="image_1" class="form-control-file">
+                                                    <input type="file" id="file-input" name="image_1" class="form-control-file" required>
                                                 </div>
                                             </div>
 

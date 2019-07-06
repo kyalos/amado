@@ -116,18 +116,22 @@ class Post_model extends CI_Model{
         $price = 1;
         $total_price=1;
          
+          $user_id=$this->session->userdata('user_id');
+
           $this->db->select('*'); 
           $this->db->from('receipt');
+          $array = array('user_id' => $user_id);
+          $this->db->where($array);
           $query = $this->db->get();
-          $result = $query->result();
+          return $query->result();
 
-          foreach ($result as $row){
-          $price = $row->price;
-          $total_price+=$price;
-         }         
+         //  foreach ($result as $row){
+         //  $price = $row->price;
+         //  $total_price+=$price;
+         // }         
 
-         $receipt = array('total_price' => $total_price);
-         return $receipt;
+         // $receipt = array('total_price' => $total_price);
+         // return $receipt;
  }
 
  public function get_all_users()
@@ -173,6 +177,13 @@ class Post_model extends CI_Model{
  {
           $this->db->select('*'); 
           $this->db->from('product');
+          $query = $this->db->get();
+          return $query->result();
+ }
+ public function products_by_popularity(){
+          $this->db->select('*'); 
+          $this->db->from('product');
+          $this->db->order_by("sell_count","desc");
           $query = $this->db->get();
           return $query->result();
  }

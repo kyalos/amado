@@ -157,7 +157,7 @@
 
                             <?php foreach ($prices as $row): ?>
 
-                                <li><span>total:</span> <span>$<?php echo $row->receipt; ?></span></li>
+                                <li><span>total:</span> <span>$<?php echo $row->price; ?></span></li>
                             <?php endforeach; ?>
                             
                             </ul>

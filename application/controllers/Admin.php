@@ -155,11 +155,13 @@ class Admin extends CI_Controller{
       'quantity' => $this->input->post('quantity')
     );
     $res = $this->post_model->save_product($data);
+
+    $this->session->set_flashdata('success', 'Successfully added a new product.');
     redirect('admin/add_new_product');
    }
   else
   {
-    $data['products'] = $this->post_model->get_all_products();
+    $this->session->set_flashdata('error', 'Unable to add new product.');
     $this->load->view('pages/home',$data);   
   }
 }

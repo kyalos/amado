@@ -27,6 +27,11 @@ class Pages extends CI_Controller{
 }
 
     //View each product
+public function homewinkel()
+{
+  $data['products'] = $this->post_model->get_all_products();
+  $this->load->view('pages/homewinkel',$data);
+}
 
 
   public function view_product($prod_id)
@@ -86,6 +91,33 @@ public function shop(){
      else
      { 
         $data['products'] = $this->post_model->get_all_products();
+
+        $data['categories'] = $this->post_model->get_all_categories();  
+        
+        $data['companies'] = $this->post_model->get_all_companies();    
+    
+       // $this->load->view('templates/header');
+       $this->load->view('pages/shop',$data);
+       // $this->load->view('templates/footer');
+     }
+   }
+
+   public function shop_by_popularity(){
+  if($this->session->userdata('loginstate')) {
+
+        $data['products'] = $this->post_model->get_all_products_by_popularity();
+
+        $data['categories'] = $this->post_model->get_all_categories();  
+        
+        $data['companies'] = $this->post_model->get_all_companies();    
+    
+       // $this->load->view('templates/header');
+       $this->load->view('pages/shoploggedin',$data);
+       // $this->load->view('templates/footer');
+     }
+     else
+     { 
+        $data['products'] = $this->post_model->get_all_products_by_popularity();
 
         $data['categories'] = $this->post_model->get_all_categories();  
         
