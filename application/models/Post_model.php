@@ -56,6 +56,24 @@ class Post_model extends CI_Model{
 
            $price;
 
+           
+           $sell_count = 1;
+
+          $this->db->select('sell_count'); 
+          $this->db->from('product');
+          $this->db->where( array('prod_id'=>$prod_id));
+
+          $query = $this->db->get();
+          $result = $query->result();
+
+          foreach ($result as $row){
+          $sell_count = $row->sell_count;
+         }
+
+           $vv = $sell_count;
+
+           $vv++;
+
            $image1 = "img.jpg";
 
           $this->db->select('image_1'); 
@@ -84,10 +102,16 @@ class Post_model extends CI_Model{
             'user_id' => $user_id,
             'image_1' => $image_1,
             'prod_id' => $prod_id
-);
+          );
 
        $this->db->insert('cart', $data);
       
+      $sc = array(
+            'sell_count' => $vv
+          );
+      $this->db->update('product', $sc);
+
+
       $cart_id = 1;
 
       $this->db->select('cart_id'); 
@@ -124,26 +148,29 @@ class Post_model extends CI_Model{
           $array = array('user_id' => $user_id);
           $this->db->where($array);
           $query = $this->db->get();
-          return $query->result();
+          $result = $query->result();
 
-         //  foreach ($result as $row){
-         //  $price = $row->price;
-         //  $total_price+=$price;
-         // }         
-
-<<<<<<< HEAD
-         // $receipt = array('total_price' => $total_price);
-         // return $receipt;
-=======
+          foreach ($result as $row){
+          $price = $row->price;
+          $total_price+=$price;
+         }         
          $receipt = array('total_price' => '$total_price');
          return $receipt;
->>>>>>> 9776274bdc6a96c99a56f413200e6ca35919304c
  }
 
  public function get_all_users()
  {
         $this->db->select('*'); 
           $this->db->from('users');
+          $query = $this->db->get();
+          return $query->result();
+
+ }
+
+ public function get_all_shops()
+ {
+        $this->db->select('*'); 
+          $this->db->from('shops');
           $query = $this->db->get();
           return $query->result();
 
@@ -298,8 +325,6 @@ class Post_model extends CI_Model{
           if ($insert){
             $res = $this->upload_image1($insert_id);
                   
-            $r= $this->upload_image2($insert_id);
-
       if ($res['result'] && $r['result'] && $rr['result'] == true){
         $array_return = array('result'=>true,'message'=>'Saved and uploaded image successfully');       
       }else{
@@ -347,54 +372,52 @@ class Post_model extends CI_Model{
 
     return $array_return;
   }
-  public function upload_image2($id){
-    if (basename($_FILES['image_2']['name']) != ''){
+  
+
+
+  public function reduce_quantity($prod_id)
+  {
+    $user_id=$this->session->userdata('user_id');
+    $quantity =1;
+    $this->db->select('quantity'); 
+          $this->db->from('cart');
+           $this->db->where( array('prod_id'=>$prod_id,'user_id'=>$user_id));
+          $query = $this->db->get();
+          $result = $query->result();      
       
-      $config = array(
-        'upload_path' => "./uploads/",
-        'allowed_types' => "gif|jpg|png|jpeg|pdf",
-        'overwrite' => TRUE,
-        'max_size' => "2048000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-        'max_height' => "0",
-        'max_width' => "0"
-      );
+          foreach ($result as $row){
+              $quantity = $row->quantity;
+             }
+             $w = $quantity;
 
-      $this->load->library('upload');
-      $this->upload->initialize($config);
+            $w--;
 
-      if($this->upload->do_upload('image_2')){
-        $dt = $this->upload->data();
-
-        $this->db->where(array('prod_id'=>$id));
-        $this->db->update('product',array('image_2'=>$dt['file_name']));
-
-        $array_return = array('result'=>true,'message'=>'Image uploaded successfully');
-        //$data = array('upload_data' => $this->upload->data());
-        //$this->load->view('upload_success',$data);
-      }else{
-        $array_return = array('result'=>false, 'message'=>$this->upload->display_errors());
-        //$error = array('error' => $this->upload->display_errors());
-        //$this->load->view('custom_view', $error);
-      }
-
-    }
-
-    return $array_return;
+    $vv = array('quantity'=>$w);
+     $this->db->where( array('prod_id'=>$prod_id,'user_id'=>$user_id));
+     $this->db->update('cart', $vv);
   }
 
-  public function reduce_quantity($qty)
-  {
+  public function add_quantity($prod_id)
+  { 
 
-     $user_id=$this->session->userdata('user_id');
-     $this->db->where('user_id', $user_id);
-     $this->db->update('quantity', $qty);
-  }
+    $user_id=$this->session->userdata('user_id');
+    $quantity =1;
+    $this->db->select('quantity'); 
+          $this->db->from('cart');
+           $this->db->where( array('prod_id'=>$prod_id,'user_id'=>$user_id));
+          $query = $this->db->get();
+          $result = $query->result();      
+      
+          foreach ($result as $row){
+              $quantity = $row->quantity;
+             }
+             $w = $quantity;
 
-  public function add_quantity($qty)
-  {
-     $user_id=$this->session->userdata('user_id');
-     $this->db->where('user_id', $user_id);
-     $this->db->update('quantity', $qty);
+            $w++;
+
+     $vv = array('quantity'=>$w);
+     $this->db->where( array('prod_id'=>$prod_id,'user_id'=>$user_id));
+     $this->db->update('cart', $vv);
   }
 
 }

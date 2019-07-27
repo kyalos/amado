@@ -192,13 +192,15 @@ public function shop(){
         
         $data['companies'] = $this->post_model->get_all_companies(); 
 
-
+         
+    $this->session->set_flashdata('success', 'Successfully added a new product.');
         $this->load->view('pages/shop',$data);
    }
    else
 
-    //if not send them to login
    {
+
+    $this->session->set_flashdata('success', 'Please Login, Thank you.');
        $this->load->view('pages/login');
    }
   }
@@ -214,7 +216,8 @@ public function shop(){
 
 
         $data['cart_products'] = $this->post_model->get_all_products_in_cart();
-
+          
+        $this->session->set_flashdata('success', 'Successfully deleted product from cart.');
         $this->load->view('pages/cart',$data);
    }
  }
@@ -251,14 +254,50 @@ public function shop(){
    $this->load->view('pages/home',$data);
    }
 
-   public function reduce_quantity($qty)
+   public function reduce_quantity($prod_id)
    {
-      $this->post_model->reduce_quantity($qty);
+      
+      if($this->session->userdata('loginstate')) {
+              $this->post_model->reduce_quantity($prod_id);
+
+
+        $data['prices'] = $this->post_model->get_prices();
+        $data['cart_products'] = $this->post_model->get_all_products_in_cart();
+         $this->session->set_flashdata('warning', 'Successfully reduced the quantity.');
+       // $this->load->view('templates/header');
+       $this->load->view('pages/cart',$data);
+       // $this->load->view('templates/footer');
+
+       }
+       else
+       {
+         $this->session->set_flashdata('warning', 'Please Login, Thank you.');
+        $this->load->view('pages/login');
+       }
+
    }
 
-   public function add_quantity($qty)
+   public function add_quantity($prod_id)
    {
-      $this->post_model->add_quantity($qty);
+      
+      if($this->session->userdata('loginstate')) {
+              $this->post_model->add_quantity($prod_id);
+
+
+        $data['prices'] = $this->post_model->get_prices();
+        $data['cart_products'] = $this->post_model->get_all_products_in_cart();
+       // $this->load->view('templates/header');
+
+         $this->session->set_flashdata('warning', 'Successfully added the quantity.');
+       $this->load->view('pages/cart',$data);
+       // $this->load->view('templates/footer');
+
+       }
+       else
+       {
+         $this->session->set_flashdata('warning', 'Please Login, Thank you.');
+        $this->load->view('pages/login');
+       }
    }
  }
 ?>

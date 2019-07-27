@@ -32,6 +32,31 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-85 p-b-20">
+				<?php if ($this->session->flashdata('success')): ?>
+                    <div class="alert alert-success block-inner">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <?php echo $this->session->flashdata('success'); ?>
+                    </div>                                    
+                    <div class="clearfix"></div>
+                    <br>
+                <?php endif; ?>
+
+                <?php if ($this->session->flashdata('error')): ?>
+                    <div class="alert alert-danger block-inner">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <?php echo $this->session->flashdata('error'); ?>
+                    </div>                                    
+                    <div class="clearfix"></div>
+                    <br>
+                <?php endif; ?>
+                 <?php if ($this->session->flashdata('warning')): ?>
+                                    <div class="alert alert-warning block-inner">
+                                        <button type="button" class="close" data-dismiss="warning">×</button>
+                                        <?php echo $this->session->flashdata('warning'); ?>
+                                    </div>                                    
+                                    <div class="clearfix"></div>
+                                    <br>
+                                <?php endif; ?>
 				<form class="login100-form validate-form" method="post" action="<?php echo base_url(); ?>pages/login">
 					<span class="login100-form-title p-b-70">
 						Welcome

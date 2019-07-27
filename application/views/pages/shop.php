@@ -214,9 +214,26 @@
                         </div>
                     </div>
                 </div>
+                 <?php if ($this->session->flashdata('success')): ?>
+                            <div class="alert alert-success block-inner">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <?php echo $this->session->flashdata('success'); ?>
+                            </div>                                    
+                            <div class="clearfix"></div>
+                            <br>
+                        <?php endif; ?>
 
+                        <?php if ($this->session->flashdata('error')): ?>
+                            <div class="alert alert-danger block-inner">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <?php echo $this->session->flashdata('error'); ?>
+                            </div>                                    
+                            <div class="clearfix"></div>
+                            <br>
+                        <?php endif; ?>
+                
                 <div class="row">
-
+                      
                     <?php foreach ($products as $row): ?>
                     <!-- Single Product Area -->
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">

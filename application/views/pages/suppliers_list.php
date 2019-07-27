@@ -45,47 +45,6 @@
     <!-- Main CSS-->
     <link href="<?php echo base_url(); ?>assets/admin/css/theme.css" rel="stylesheet" media="all">
 
-
-   <style>
-.dropbtn {
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown a:hover {background-color: #ddd;}
-
-.show {display: block;}
-</style>
 </head>
 
 <body class="animsition">
@@ -628,9 +587,10 @@
                                         <i class="zmdi zmdi-filter-list"></i>filters</button>
                                 </div>
                                 <div class="table-data__tool-right">
-                                    <a href="<?php echo base_url(); ?>admin/add_new_product">
+                                    <a href="<?php echo base_url(); ?>admin/add_new_user">
                                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                        <i class="zmdi zmdi-plus"></i>add new Product</button></a>
+                                        <i class="zmdi zmdi-plus"></i>add new User</button>
+                                    </a>
                                     <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                                         <select class="js-select2" name="type">
                                             <option selected="selected">Export</option>
@@ -645,58 +605,55 @@
                                 <table class="table table-data2">
                                     <thead>
                                         <tr>
-                                            <th>product ID</th>
-                                            <th>fullname</th>
-                                            <th>Description</th>
-                                            <th>Company</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>In Stock</th>
-                                            <th>First Image</th>
-                                            <th>Second Image</th>
-                                            <th>options</th>
+                                            <th>Fullname</th>
+                                            <th>date of Birth</th>
+                                            <th>Gender</th>
+                                            <th>Email</th>
+                                            <th>Country</th>
+                                            <th>Address</th>
+                                            <th>Town</th>
+                                            <th>Phone number</th>
+                                            <th>Created on</th>
+                                            <th>User type</th>
+                                            <th>Options</th>
                                         </tr>
                                     </thead>
-                                    <?php foreach ($products as $row ): ?>
                                     <tbody>
+
+                                     <?php foreach ($users as $row ): ?>
                                         <tr class="tr-shadow">
-                                            
-                                            <td><?php echo $row->prod_id; ?></td>
-                                            <td><?php echo $row->product_firstname; ?> <?php echo $row->product_lastname; ?></td>
-                                            <td><?php echo $row->description; ?>
+                                            <td><?php echo $row->firstname; ?> <?php echo $row->lastname; ?></td>
+                                            <td><?php echo $row->dob; ?></td>
+                                            <td><?php echo $row->gender; ?></td>
+                                            <td><?php echo $row->email; ?>
                                             </td>
-                                            <td><?php echo $row->company; ?></td>
-                                          <td><?php echo $row->price; ?></td>   
-                                          <td><?php echo $row->quantity; ?></td>
-                                            <td style="align:center"><?php echo $row->in_stock; ?></td>
-                                                 <td><?php echo $row->image_1; ?></td>
-                                            <td><?php echo $row->image_1; ?></td>
+                                            <td><?php echo $row->country; ?></td>
+                                            <td><?php echo $row->address; ?></td>
+                                            <td><?php echo $row->town; ?></td>
+                                            <td><?php echo $row->phonenumber; ?></td>
+                                            <td><?php echo $row->created_on; ?></td>
+                                            <td><?php echo $row->user_type; ?></td>
+                                            
                                             <td>
                                                 <div class="table-data-feature">
-                                                    <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send" onclick="myFunction()">
-                                                        <i class="zmdi zmdi-mail-send"></i>
-                                                    </button> -->
+                                                    
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </button>
-                                                    <a href="<?php echo base_url(); ?>admin/remove_product_from_list/<?php echo $row->prod_id; ?>">
+                                                    <a href="<?php echo base_url(); ?>admin/remove_user/<?php echo $row->user_id; ?>">
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                        <i class="zmdi zmdi-delete" onclick="DeleteFunction('<?php echo $row->prod_id; ?>')"></i>
+                                                        <i class="zmdi zmdi-delete"></i>
                                                     </button>
-                                                        </a>                                                     <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </button> -->
+                                                </a>
+
                                                 </div>
                                             </td>
                                         </tr>
+                                    <?php endforeach; ?>
+                                        <tr class="spacer"></tr>
+                                        <tr class="spacer"></tr>
                                         <tr class="spacer"></tr>
                                     </tbody>
-                                    <div id="myDropdown" class="dropdown-content">
-                                        <a href="#">Link 1</a>
-                                        <a href="#">Link 2</a>
-                                        <a href="#">Link 3</a>
-                                      </div>
-                                <?php endforeach; ?>
                                 </table>
                             </div>
                         </div>
@@ -723,50 +680,6 @@
         </div>
 
     </div>
-
-<script>
-    
-    $("#btn_preview").click(function(){
-        var name=$('#txtName').val();
-        var message=$('#txtMessageRequired').val();
-        var tag = $("<div></div>");
-        $(tag).attr("title", "Preview - Newsletter");
-        $.ajax({
-            type: "POST",
-            data: {message: message, name: name},
-            url: base_url+'index.php/newsletter/preview_newsletter',//Important: base_url is defined in the header section
-            success:function(result){
-                $(tag).dialog({
-                    autoOpen: false,
-                    show: {
-                        effect: "blind",
-                        duration: 1000
-                    },
-                    hide: {
-                        effect: "explode",
-                        duration: 1000
-                    }
-                });
-                $(tag).dialog( "option", "width", 670 );
-                $(tag).html(result).dialog().dialog('open');
-            }
-        });
-    });
-</script>
-
-
-<script>
-function DeleteFunction(i) {
-  var txt;
-  var r = confirm("Please Confirm deletion");
-  if (r == true) {
-       txt = "This product has been deleted";
-  } else {
-    txt = "You pressed Cancel!";
-  }
-}
-</script>
-
 
     <!-- Jquery JS-->
     <script src="<?php echo base_url(); ?>assets/admin/vendor/jquery-3.2.1.min.js"></script>

@@ -449,6 +449,31 @@
                                         <strong>Company</strong>
                                         <small> Form</small>
                                     </div>
+                                    <?php if ($this->session->flashdata('success')): ?>
+                                                    <div class="alert alert-success block-inner">
+                                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                                        <?php echo $this->session->flashdata('success'); ?>
+                                                    </div>                                    
+                                                    <div class="clearfix"></div>
+                                                    <br>
+                                                <?php endif; ?>
+
+                                                <?php if ($this->session->flashdata('error')): ?>
+                                                    <div class="alert alert-danger block-inner">
+                                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                                        <?php echo $this->session->flashdata('error'); ?>
+                                                    </div>                                    
+                                                    <div class="clearfix"></div>
+                                                    <br>
+                                                <?php endif; ?>
+                                                <?php if ($this->session->flashdata('warning')): ?>
+                                                    <div class="alert alert-warning block-inner">
+                                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                                        <?php echo $this->session->flashdata('warning'); ?>
+                                                    </div>                                    
+                                                    <div class="clearfix"></div>
+                                                    <br>
+                                                <?php endif; ?>
                                     <form action="<?php echo base_url(); ?>admin/register_new_user_admin" method="POST">
                                     <div class="card-body card-block">
                                         <div class="form-group">
@@ -759,16 +784,22 @@
                                                 <div class="col-12 col-md-9">
                                                     <select name="user_type" id="select" class="form-control">
                                                         <?php foreach ($user_types as $row ): ?>
-                                                        <option value="<?php echo $row->user_type_name; ?>"><?php echo $row->user_type_name; ?></option>
+                                                        <option value="<?php echo $row->user_type; ?>"><?php echo $row->user_type; ?></option>
                                                     <?php endforeach; ?>
                                                     </select>
                                                 </div>
                                             </div>
 
+
                                         <div class="form-group">
                                             <label for="country" class=" form-control-label">Password</label>
                                             <input type="password" id="country" placeholder="Create your password" name="user_password" class="form-control">
                                         </div>
+                                        <div class="form-group">
+                                            <label for="country" class=" form-control-label">Confirm Password</label>
+                                            <input type="password" id="country" placeholder="Create your password" name="confirm_password" class="form-control">
+                                        </div>
+
                                         <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                                     <span id="payment-button-amount">Register</span>
                                                     <span id="payment-button-sending" style="display:none;">Sending…</span>

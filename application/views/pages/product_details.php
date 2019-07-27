@@ -122,9 +122,9 @@
                                 <ol class="carousel-indicators">
                                     <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>);">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(<?php echo base_url(); ?>uploads/<?php echo $row->image_2; ?>);">
+                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>);">
                                     </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(<?php echo base_url(); ?>uploads/<?php echo $row->image_3; ?>);">
+                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>);">
                                     </li>
                                 </ol>
                                 <div class="carousel-inner">
@@ -134,13 +134,13 @@
                                         </a>
                                     </div>
                                     <div class="carousel-item">
-                                        <a class="gallery_img" href="<?php echo base_url(); ?>uploads/<?php echo $row->image_2; ?>">
-                                            <img class="d-block w-100" src="<?php echo base_url(); ?>uploads/<?php echo $row->image_2; ?>" alt="Second slide">
+                                        <a class="gallery_img" href="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>">
+                                            <img class="d-block w-100" src="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>" alt="Second slide">
                                         </a>
                                     </div>
                                     <div class="carousel-item">
-                                        <a class="gallery_img" href="<?php echo base_url(); ?>uploads/<?php echo $row->image_3; ?>">
-                                            <img class="d-block w-100" src="<?php echo base_url(); ?>uploads/<?php echo $row->image_3; ?>" alt="Third slide">
+                                        <a class="gallery_img" href="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>">
+                                            <img class="d-block w-100" src="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>" alt="Third slide">
                                         </a>
                                     </div>
                                 </div>

@@ -74,6 +74,7 @@
                     
                     <li><a href="<?php echo base_url(); ?>pages/cart">Cart</a></li>
                     <li><a href="<?php echo base_url(); ?>pages/checkout">Checkout</a></li>
+                     <li><a href="<?php echo base_url(); ?>pages/logout">Logout</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -107,6 +108,31 @@
 
                         <div class="cart-table clearfix">
                             <table class="table table-responsive">
+                                  <?php if ($this->session->flashdata('success')): ?>
+                                    <div class="alert alert-success block-inner">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <?php echo $this->session->flashdata('success'); ?>
+                                    </div>                                    
+                                    <div class="clearfix"></div>
+                                    <br>
+                                <?php endif; ?>
+
+                                <?php if ($this->session->flashdata('error')): ?>
+                                    <div class="alert alert-danger block-inner">
+                                        <button type="button" class="close" data-dismiss="alert">×</button>
+                                        <?php echo $this->session->flashdata('error'); ?>
+                                    </div>                                    
+                                    <div class="clearfix"></div>
+                                    <br>
+                                <?php endif; ?>
+                                <?php if ($this->session->flashdata('warning')): ?>
+                                    <div class="alert alert-warning block-inner">
+                                        <button type="button" class="close" data-dismiss="warning">×</button>
+                                        <?php echo $this->session->flashdata('warning'); ?>
+                                    </div>                                    
+                                    <div class="clearfix"></div>
+                                    <br>
+                                <?php endif; ?>
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -131,15 +157,25 @@
                                             <div class="qty-btn d-flex">
                                                 <p>Qty</p>
                                                 <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false; reduce_quantity(qty)"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false; add_quantity(qty)"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                    <span class="qty-minus" onclick="decrementValue(); reduce_quantity()" value="-"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                    <input type="text" class="qty-text" maxnlength="2" max="10" name="quantity" value="<?php echo $row->quantity; ?>" size="1" disabled id="number">
+                                                    <span class="qty-plus" ><i class="fa fa-plus" aria-hidden="true" onclick="incrementValue(); add_quantity()" value="+"></i></span>
                                                 </div>
                                             </div>
                                         </br>
-                                           <a href="<?php echo base_url(); ?>pages/remove_from_cart/<?php echo $row->prod_id; ?>"> <i class="fa fa-trash" aria-hidden="true" onclick="updateCart();"></i>
+                                           <a href="<?php echo base_url(); ?>pages/remove_from_cart/<?php echo $row->prod_id; ?>"> <i class="fa fa-trash" aria-hidden="true" onclick="updateCart();" value="-"></i>
                                         </td>
                                     </tr>
+                                    <script type="text/javascript">
+                                        function add_quantity()
+                                                {
+                                                    window.location.href = "<?php echo site_url('pages/add_quantity/');?><?php echo $row->prod_id; ?>";
+                                                }
+                                                function reduce_quantity()
+                                                {
+                                                    window.location.href = "<?php echo site_url('pages/reduce_quantity/');?><?php echo $row->prod_id; ?>";
+                                                }
+                                    </script>
                                 <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -162,8 +198,9 @@
                             
                             </ul>
                             <div class="cart-btn mt-100">
-                                <a href="cart.html" class="btn amado-btn w-100">Checkout</a>
+                                <a href="<?php echo base_url(); ?>pages/checkout" class="btn amado-btn w-100">Checkout</a>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -236,6 +273,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         <li class="nav-item">
                                             <a class="nav-link" href="checkout.html">Checkout</a>
                                         </li>
+                                         <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url(); ?>pages/logout">Logout</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </nav>
@@ -253,18 +293,29 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         {
 
             window.location.href = "<?php echo site_url('pages/cart()');?>";
-        }
-
-        
-        function add_quantity(int i)
-        {
-            window.location.href = "<?php echo site_url('pages/add_to_cart(i)');?>";
-        }
-        function reduce_quantity(int i)
-        {
-            window.location.href = "<?php echo site_url('pages/remove_from_cart(i)');?>";
-        }
+        }       
     </script>
+    <script type="text/javascript">
+function incrementValue()
+{
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value<10){
+        value++;
+            document.getElementById('number').value = value;
+    }
+}
+function decrementValue()
+{
+    var value = parseInt(document.getElementById('number').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if(value>1){
+        value--;
+            document.getElementById('number').value = value;
+    }
+
+}
+</script>
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src ="<?php echo base_url(); ?>assets/js/jquery/jquery-2.2.4.min.js"></script>

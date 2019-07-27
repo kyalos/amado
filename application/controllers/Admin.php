@@ -98,7 +98,9 @@ class Admin extends CI_Controller{
    $this->form_validation->set_rules('town', 'Town','required');
    $this->form_validation->set_rules('user_type', 'User_type','required');
    $this->form_validation->set_rules('user_password', 'User_password','required');
+   $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'required|matches[user_password]');
    $this->form_validation->set_rules('phonenumber', 'Phonenumber','required');
+
 
    if($this->form_validation->run() != FALSE)
    {
@@ -116,10 +118,14 @@ class Admin extends CI_Controller{
       'phonenumber' => $this->input->post('phonenumber')
     );
     $res = $this->post_model->register_user($data);
+
+    $this->session->set_flashdata('success', 'Registration is Successful.');
     redirect('admin/add_new_user');
    }
   else
   {
+
+    $this->session->set_flashdata('error', 'Registration failed.');
     $data['products'] = $this->post_model->get_all_products();
     $this->load->view('pages/home',$data);   
   }
@@ -130,6 +136,9 @@ class Admin extends CI_Controller{
    public function add_new_product()
    {
         $data['products'] = $this->post_model->get_all_products();
+        $data['shops'] = $this->post_model->get_all_shops();
+
+        $this->load->view('templates/admin_header');
         $this->load->view('pages/add_new_product',$data);
    }
 

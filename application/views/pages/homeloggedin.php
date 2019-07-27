@@ -71,7 +71,7 @@
                 <ul>
                     <li class="active"><a href="<?php echo base_url(); ?>pages/view">Home</a></li>
                     <li><a href="<?php echo base_url(); ?>pages/shop">Shop</a></li>
-                    <li><a href="<?php echo base_url(); ?>pages/login_page">Cart</a></li>
+                    <li><a href="<?php echo base_url(); ?>pages/cart">Cart</a></li>
                     <li><a href="<?php echo base_url(); ?>pages/checkout">Checkout</a></li>
                     <li><a href="<?php echo base_url(); ?>pages/logout">Logout</a></li>
                 </ul>
@@ -83,7 +83,7 @@
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="<?php echo base_url(); ?>pages/login_page" class="cart-nav"><img src="<?php echo base_url(); ?>assets/img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+                <a href="<?php echo base_url(); ?>pages/cart" class="cart-nav"><img src="<?php echo base_url(); ?>assets/img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
                 <a href="#" class="fav-nav"><img src="<?php echo base_url(); ?>assets/img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="<?php echo base_url(); ?>assets/img/core-img/search.png" alt=""> Search</a>
             </div>
@@ -105,13 +105,13 @@
            <?php foreach ($products as $row): ?>
            <div class="single-products-catagory clearfix">
                     <a href="<?php echo base_url(); ?>pages/view_product/<?php echo $row->prod_id; ?>">
-                        <img src="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>" alt="">
+                        <img src="<?php echo base_url(); ?>uploads/<?php echo $row->image_1; ?>"style="width:200px;height:200px;" alt="<?php echo $row->product_firstname; ?>">
                         <!-- Hover Content -->
                         <div class="hover-content">
                             <div class="line"></div>
+                        </div>
                             <p>From $<?php echo $row->price; ?></p>
                             <h4><?php echo $row->product_firstname; ?> <?php echo $row->product_lastname; ?></h4>
-                        </div>
                     </a>
                 </div>
                 <?php endforeach; ?>                
@@ -181,10 +181,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                         </li>
                                     
                                         <li class="nav-item">
-                                            <a class="nav-link" href="<?php echo base_url(); ?>pages/login_page">Cart</a>
+                                            <a class="nav-link" href="<?php echo base_url(); ?>pages/cart">Cart</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="<?php echo base_url(); ?>pages/checkout">Checkout</a>
+                                            <a class="nav-link" href="checkout.html">Checkout</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="<?php echo base_url(); ?>pages/logout">Logout</a>
